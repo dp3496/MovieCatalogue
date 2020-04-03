@@ -1,0 +1,107 @@
+﻿
+@page "/moviedetail/{Title}"
+@inherits MovieDetailBase
+
+<section class="movie-detail">
+    <h1 class="page-title">Details for @Movie.Title</h1>
+    <div class="col-12 row">
+        <div class="col-2">
+            <img src="@($"{Movie.Poster}")" class="img-responsive rounded-circle employee-detail-img" />
+        </div>
+        <div class="col-10 row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Title</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Movie.Title</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Year</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Year</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Director</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Director</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Writer</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Writer</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Actors</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Actors</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Plot</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Plot</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Language</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Language</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Country</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Country</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Awards</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Awards</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Rated</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Rated</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Imdb Rating</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.imdbID</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Type</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Type</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Production</label>
+                    <div class="col-sm-8">
+                        <label type="text" readonly class="form-control-plaintext">@Movie.Production</label>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+</section>

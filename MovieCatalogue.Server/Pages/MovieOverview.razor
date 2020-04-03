@@ -1,0 +1,53 @@
+﻿@page "/movieoverview"
+@inherits MovieOverviewBase
+
+<h1 class="page-title">Find Movies</h1>
+
+<div>
+    <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+            <input class="search_input" type="text" name=""  placeholder="Search Movies..." @bind="SearchString" width="100%">
+            <button @onclick="OnSearchClick" class="search_icon"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</div>
+
+@if (Movies == null)
+{
+    <p><em>No matching movies found.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Movie Title</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Show Detail</th>
+                <th>Add To Collection</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Movies)
+            {
+                int index = Movies.IndexOf(movie);
+                <tr @onclick="()=> ClickedRow(Movies[index])">
+                    <td><img src="@($"{movie.Poster}")" class="rounded-circle" width="8%" height="8%" /></td>
+                    <td align="justify">@movie.Title</td>
+                    <td align="justify">@movie.Year</td>
+                    <td align="justify">@movie.Type</td>
+                    <td align="center">
+                        <NavLink href="@($"moviedetail/{movie.Title}")" class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>
+                        </NavLink>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary table-btn" @onclick="AddToMovieCollection">Add</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
