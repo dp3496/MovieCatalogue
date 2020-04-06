@@ -1,12 +1,15 @@
-﻿@page "/movieoverview"
-@inherits MovieOverviewBase
+﻿@page "/movieoverviews"
+@inherits MovieOverviewsBase
+@using System.Net.Http
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <h1 class="page-title">Find Movies</h1>
 
 <div>
     <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
-            <input class="search_input" type="text" name=""  placeholder="Search Movies..." @bind="SearchString" width="100%">
+            <input class="search_input" type="text" name="" placeholder="Search Movies..." @bind="SearchString" width="100%">
             <button @onclick="OnSearchClick" class="search_icon"><i class="fas fa-search"></i></button>
         </div>
     </div>
@@ -50,4 +53,15 @@ else
             }
         </tbody>
     </table>
+}
+
+@functions {
+
+    MovieCatalogue.Shared.MovieOverview movie = new MovieCatalogue.Shared.MovieOverview();
+
+    protected async Task AddToMovieCollection()
+    {
+        await Http.PostJsonAsync("/api/Movies", movie);
+        NavigationManager.NavigateTo("/moviecollection");
+    }
 }

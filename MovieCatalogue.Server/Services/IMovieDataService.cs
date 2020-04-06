@@ -6,10 +6,10 @@ namespace MovieCatalogue.Server.Services
 {
     public interface IMovieDataService
     {
-        Task<RootObject> GetAllMovies(string title);
-        Task<Movie> GetMovieDetails(string title);
-        Task<Movie> AddMovie(Search title);
-        Task UpdateMovie(Movie title);
+        Task<IEnumerable<MovieOverview>> GetAllMovies();
+        Task<MoviesOverview> GetAllMatchingMovies(string title);
+        Task<MovieDetails> GetMovieDetails(string title);
+        Task<MovieDetails> AddMovie(MovieOverview title);
         Task DeleteMovie(string title);
     }
 }

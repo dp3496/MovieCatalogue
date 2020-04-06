@@ -10,6 +10,25 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.carousel-inner {
+    height: 300px;
+}
+
+#top {
+    height: 30%;
+    overflow-y: auto;
+}
+
+#bottomdiv {
+    height: 70%;
+    overflow-y: auto;
+}
+
+#bottom {
+    bottom: 0;
+    background-color: green;
+}
+
 nav {
     background-color: #a593c2;
     border-color: #a593c2;

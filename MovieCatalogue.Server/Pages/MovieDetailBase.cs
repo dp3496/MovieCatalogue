@@ -14,7 +14,7 @@ namespace MovieCatalogue.Server.Pages
         [Parameter]
         public string Title { get; set; }
        
-        public Movie Movie { get; set; } = new Movie();
+        public MovieDetails Movie { get; set; } = new MovieDetails();
 
         protected override async Task OnInitializedAsync()
         {

@@ -24,6 +24,7 @@ namespace MovieCatalogue.ServerApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient();
 
         
             //services.AddScoped<IEmployeeDataService, MockEmployeeDataService>();

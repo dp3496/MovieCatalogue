@@ -16,19 +16,19 @@ namespace MovieCatalogue.Server.Services
             _httpClient = httpClient;
         }
 
-        public async Task<RootObject> GetAllMovies(string title)
+        public async Task<MoviesOverview> GetAllMatchingMovies(string title)
         {
-            return await JsonSerializer.DeserializeAsync<RootObject>
+            return await JsonSerializer.DeserializeAsync<MoviesOverview>
                 (await _httpClient.GetStreamAsync($"http://www.omdbapi.com/?apikey=e8fce7a8&s={title}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<Movie> GetMovieDetails(string title)
+        public async Task<MovieDetails> GetMovieDetails(string title)
         {
-            return await JsonSerializer.DeserializeAsync<Movie>
+            return await JsonSerializer.DeserializeAsync<MovieDetails>
                 (await _httpClient.GetStreamAsync($"http://www.omdbapi.com/?apikey=e8fce7a8&t={title}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<Movie> AddMovie(Search movie)
+        public async Task<MovieDetails> AddMovie(MovieOverview movie)
         {
             var movieDetails = GetMovieDetails(movie.Title).Result;
 
@@ -39,13 +39,13 @@ namespace MovieCatalogue.Server.Services
 
             if (response.IsSuccessStatusCode)
             {
-                return await JsonSerializer.DeserializeAsync<Movie>(await response.Content.ReadAsStreamAsync());
+                return await JsonSerializer.DeserializeAsync<MovieDetails>(await response.Content.ReadAsStreamAsync());
             }
 
             return null;
         }
 
-        public async Task UpdateMovie(Movie movie)
+        public async Task UpdateMovie(MovieDetails movie)
         {
             var employeeJson =
                 new StringContent(JsonSerializer.Serialize(movie), Encoding.UTF8, "application/json");
@@ -56,6 +56,13 @@ namespace MovieCatalogue.Server.Services
         public async Task DeleteMovie(string title)
         {
             await _httpClient.DeleteAsync($"api/employee/{title}");
+        }
+
+        public async Task<IEnumerable<MovieOverview>> GetAllMovies()
+        {
+            string title = "logan";
+            return (await JsonSerializer.DeserializeAsync<MoviesOverview>
+                (await _httpClient.GetStreamAsync($"http://www.omdbapi.com/?apikey=e8fce7a8&s={title}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true })).Search;
         }
     }
 }
