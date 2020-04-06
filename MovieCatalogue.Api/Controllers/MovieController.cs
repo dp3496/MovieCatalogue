@@ -22,15 +22,9 @@ namespace MovieCatalogue.Api.Controllers
             _movieRepository = movieRepository;
         }
 
-        public void logMessage()
-        {
-            System.Diagnostics.Debug.Print("Getting all movies");
-        }
-
         [HttpGet("movies")]
         public IActionResult GetAllMovies()
         {
-            logMessage();
             return Ok(_movieRepository.GetMoviesOverView());
         }
 
@@ -54,12 +48,12 @@ namespace MovieCatalogue.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var addedMovie = _movieRepository.AddMovieAsync(movieOverview);
+            _movieRepository.AddMovie(movieOverview);
 
-            return Created("movie", addedMovie);
+            return Ok();
         }
 
-        [HttpPost("movies")]
+        
         public IActionResult DeleteMovie([FromBody] MovieOverview movieOverview)
         {
             return Ok(_movieRepository.DeleteMovie(movieOverview.Title));

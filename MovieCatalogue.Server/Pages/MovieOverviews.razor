@@ -61,7 +61,7 @@ else
 
     protected async Task AddToMovieCollection()
     {
-        await Http.PostJsonAsync("/api/Movies", movie);
+        await Http.PostJsonAsync("/api/Movies", SelectedSearch);
         NavigationManager.NavigateTo("/moviecollection");
     }
 }

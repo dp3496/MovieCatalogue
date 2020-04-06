@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MovieCatalogue.Shared;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace MovieCatalogue.Api.Models
     public class MongoApiProvider : IMovieRepository
     {
         MongoApiContext db = new MongoApiContext();
-        public async Task AddMovieAsync(MovieOverview movieOverview)
+        public void AddMovie(MovieOverview movieOverview)
         {
             try
             {
-                await db.Movies.InsertOneAsync(movieOverview);
+               db.Movies.InsertOne(movieOverview);
             }
             catch
             {
@@ -33,11 +34,11 @@ namespace MovieCatalogue.Api.Models
                 throw;
             }
         }
-        public async Task<IEnumerable<MovieOverview>> GetMoviesOverView()
+        public IEnumerable<MovieOverview> GetMoviesOverView()
         {
             try
             {
-                return await db.Movies.Find(_ => true).ToListAsync();
+                return db.Movies.Find(new BsonDocument()).ToList();
             }
             catch
             {

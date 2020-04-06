@@ -25,9 +25,7 @@
                 <BSCard CardType="CardType.Image" VerticalAlignment="VerticalAlignment.Top" src="@($"{movie.Poster}")" alt="256x180" />
                 <BSCard CardType="CardType.Body">
                     <BSCard CardType="CardType.Title">@movie.Title</BSCard>
-                    <BSCard CardType="CardType.Subtitle">Card subtitle</BSCard>
-                    <BSCard CardType="CardType.Text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</BSCard>
-                    <BSCard CardType="CardType.Text"><small class="text-muted">Last updated 3 mins ago</small></BSCard>
+                    <BSCard CardType="CardType.Subtitle">@movie.Year</BSCard>
                 </BSCard>
             </BSCard>
         }
